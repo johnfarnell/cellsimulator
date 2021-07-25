@@ -2,7 +2,7 @@
 
 For a quick demonstration of the workings of this application, please copy the following link https://github.com/johnfarnell/cellsimulator/tree/dev and import at
 https://codesandbox.io/docs/importing
-Alternatively, clone the gitbuhb link  https://github.com/johnfarnell/cellsimulator/tree/dev to a local machine and use the standard "npm start" to run the application locally
+Alternatively, clone the github link  https://github.com/johnfarnell/cellsimulator/tree/dev to a local machine and use the standard "npm start" to run the application locally
 
 ## Overview
 
@@ -80,8 +80,11 @@ the cellValues will have the following appearance:
   {"3_10: true ......}
   
 There are extensive tests around the algorithm to calcuale the next generation - see `src\generator\calcNextGeneration.test.ts`. Included is a test to ensure
-that the simulation at https://user-images.githubusercontent.com/7149052/53603476-bfb00e00-3c05-11e9-8862-1dfd31836dcd.jpg is succesful
+that the simulation at https://user-images.githubusercontent.com/7149052/53603476-bfb00e00-3c05-11e9-8862-1dfd31836dcd.jpg is successful
 
+## Testing
+
+Unit testing is 100% on the cell calculations, actions and reducers. All Actions/reducers and algorithms have 100% coverage
 
 ## Available Scripts
 
