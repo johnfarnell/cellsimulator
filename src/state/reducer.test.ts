@@ -44,7 +44,7 @@ describe ('Tests for the reducer', ()=> {
       const action: Action = {
         type: REPEAT
       }
-      expect(reducer(activeState, action)).toEqual({...activeState, started: false, cellValues: state.lastRunCellValues })
+      expect(reducer(activeState, action)).toEqual({...activeState, started: true, cellValues: state.lastRunCellValues })
     })
     
     it('should set "numberOfCols" to assigned value for Action: NUMBER_OF_COLS', () => {
