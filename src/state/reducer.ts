@@ -11,8 +11,8 @@ export type State = {
 export const initialReducerState: State = {
   started: false,
   cellValues: {...initCellValues},
-  numberOfRows: 50,
-  numberOfCols: 50,
+  numberOfRows: 35,
+  numberOfCols: 35,
 }
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {

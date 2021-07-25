@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test src/state/dispatchactions.test.ts",
+    "test": "react-scripts test src/generator/calcNextGeneration.test.ts",
     "coverage": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject"
   },
