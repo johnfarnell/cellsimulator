@@ -17,9 +17,9 @@ const App = () => {
   const rows = initialisedRowsOfCells(numberOfRows, numberOfCols);
   useEffect(() => {
     if (!started) return
-    let timer1 = setTimeout(() => { dispatch(postNextGenerateAction(state)) }, 1000)
+    let actionTimer = setTimeout(() => { dispatch(postNextGenerateAction(state)) }, 1000)
     return () => {
-      clearTimeout(timer1)
+      clearTimeout(actionTimer)
     }
   })
   const startable = !(started || isEqualToInitialValues(cellValues))
