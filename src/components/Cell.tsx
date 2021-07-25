@@ -43,7 +43,6 @@ const  Cell = (props : CellProps) => {
 
 export const getCell = (key: string, started: boolean, active: boolean, activate: ((a: boolean) => void)): CellType => {
 
- // console.log({started})
   if (started) {
     return <Cell active={active} key={key} />
   }

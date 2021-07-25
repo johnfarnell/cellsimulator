@@ -14,7 +14,6 @@ const calcNextGeneration = (cellValues: CellValues, numberOfRows: number, number
 
     for (let row = -1; row <= numberOfRows; row++) {
       for (let col = -1; col <= numberOfCols; col++) {
-    //   console.log({key: deriveKey(row, col)})
         const active =  getValue(row, col, cellValues)
         //count the active neighbours
         let activeNeighbourCount = 0

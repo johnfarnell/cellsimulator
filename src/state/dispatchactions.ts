@@ -7,7 +7,6 @@ import { Dispatch } from "react";
 export const postNextGenerateAction =  (state: State ): Action => {
   const { cellValues, numberOfRows, numberOfCols } = state
   const cellValuesNew = calcNextGeneration(cellValues, numberOfRows, numberOfCols)
-  console.log({cellValuesNew})
   if (isEqualToInitialValues(cellValuesNew) || isEqual(cellValuesNew, cellValues)) {
     return {
       type: STOP,
@@ -50,8 +49,7 @@ export const setRepeat = (dispatch: Dispatch<Action>) =>
 
 export const activateCell = (dispatch: Dispatch<Action>) => (key: string, active: boolean) =>
   () => {
-    console.log({activateCell: active})
-    dispatch({
+     dispatch({
       type: ACTIVATE_CELL,
       payload: {
         key,
