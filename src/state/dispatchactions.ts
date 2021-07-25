@@ -1,7 +1,7 @@
 import calcNextGeneration from "../generator/calcNextGeneration"
 import { isEqualToInitialValues, isEqual } from "./cellValues"
 import { State } from "./reducer";
-import { Action, ACTIVATE_CELL, NUMBER_OF_COLS, NUMBER_OF_ROWS, START, STOP, UPDATE_CELLS } from "../actions/actiontypes";
+import { Action, ACTIVATE_CELL, NUMBER_OF_COLS, NUMBER_OF_ROWS, REPEAT, START, STOP, UPDATE_CELLS } from "../actions/actiontypes";
 import { Dispatch } from "react";
 
 export const postNextGenerateAction =  (state: State ): Action => {
@@ -11,6 +11,7 @@ export const postNextGenerateAction =  (state: State ): Action => {
   if (isEqualToInitialValues(cellValuesNew) || isEqual(cellValuesNew, cellValues)) {
     return {
       type: STOP,
+      keep: !isEqualToInitialValues(cellValuesNew)
     }
   } else {
     return {
@@ -37,9 +38,16 @@ export const setStart = (dispatch: Dispatch<Action>) =>
   })
 
 export const setStop = (dispatch: Dispatch<Action>) =>
-  () => dispatch({
+  (keep: boolean) => dispatch({
     type: STOP,
+    keep
   })
+
+export const setRepeat = (dispatch: Dispatch<Action>) =>
+  () => dispatch({
+    type: REPEAT
+  })
+
 export const activateCell = (dispatch: Dispatch<Action>) => (key: string, active: boolean) =>
   () => {
     console.log({activateCell: active})

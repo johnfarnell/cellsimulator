@@ -36,13 +36,19 @@ describe('Tests for the calcNextGeneration', () => {
     expect(fourth).toEqual({ '2_3': true, '3_4': true, '4_4': true, '4_3': true, '4_2': true })
   })
 
-  it('should handle the edgae case', () => {
+  it('should handle the edge case', () => {
     const cellValues: CellValues = {
       "0_1": true,
       "0_2": true,
       "0_3": true
     }
     expect(calcNextGeneration(cellValues, 6, 6)).toEqual({ '0_2': true, '1_2': true, '5_2': true })
+  })
+  it('should handle the single cell', () => {
+    const cellValues: CellValues = {
+      "4_2": true,
+    }
+    expect(calcNextGeneration(cellValues, 6, 6)).toEqual({})
   })
 })
 

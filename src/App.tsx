@@ -8,12 +8,12 @@ import { GridHeading } from './components/GridHeading';
 import { GridMain } from './components/GridMain';
 import { initialisedRowsOfCells } from './generator/utility';
 import { isActive, isEqualToInitialValues } from './state/cellValues';
-import { postNextGenerateAction, setNumberOfCols, setNumberOfRows, setStart, setStop, activateCell } from './state/dispatchactions';
+import { postNextGenerateAction, setNumberOfCols, setNumberOfRows, setStart, setRepeat, setStop, activateCell } from './state/dispatchactions';
 import { initialReducerState, reducer } from './state/reducer';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialReducerState)
-  const { numberOfCols, numberOfRows, cellValues, started } = state
+  const { numberOfCols, numberOfRows, cellValues, started, lastRunCellValues } = state
   const rows = initialisedRowsOfCells(numberOfRows, numberOfCols);
   useEffect(() => {
     if (!started) return
@@ -23,6 +23,7 @@ const App = () => {
     }
   })
   const startable = !(started || isEqualToInitialValues(cellValues))
+  const repeatable = !(started || isEqualToInitialValues(lastRunCellValues))
 
   return (
     <GridMain>
@@ -40,6 +41,8 @@ const App = () => {
             startable={startable}
             setStart={setStart(dispatch)}
             setStop={setStop(dispatch)}
+            setRepeat={setRepeat(dispatch)}
+            repeatable={repeatable}
             numberOfRows={numberOfRows}
             numberOfCols={numberOfCols}
           />

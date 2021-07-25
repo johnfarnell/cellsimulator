@@ -1,7 +1,6 @@
 import styled from  'styled-components'
 
 const buttonColor = (props :{ active: boolean}) : string => {
-  console.log({buttonColor: props.active})
   if (props.active) {
     return 'background-color: lightgreen;'
   }

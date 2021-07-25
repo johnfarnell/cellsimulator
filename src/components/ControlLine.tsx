@@ -71,7 +71,9 @@ type ControlLineProps = {
   started: boolean
   startable: boolean
   setStart: () => void
-  setStop: () => void
+  setRepeat: () => void
+  repeatable: boolean
+  setStop: (keep: boolean) => void
   numberOfRows: number
   numberOfCols: number
 }
@@ -84,6 +86,8 @@ const ControlLine = (props: ControlLineProps) => {
       startable,
       setStart,
       setStop,
+      setRepeat,
+      repeatable,
       numberOfRows,
       numberOfCols,
         } =  props
@@ -104,8 +108,14 @@ const ControlLine = (props: ControlLineProps) => {
             <div className="start">
                 <input type="button" disabled={!startable} value="Start" onClick={() => setStart()}/>
             </div>
+            <div className="repeat">
+                <input type="button" disabled={!repeatable} value="Repeat" onClick={() => setRepeat()}/>
+            </div>
             <div className="stop">
-                <input type="button" disabled={!started} value="Stop" onClick={() => setStop()}/>
+                <input type="button" disabled={!started} value="Stop" onClick={() => setStop(true)}/>
+            </div>
+            <div className="clear">
+                <input type="button" disabled={!(started||startable)} value="Clear" onClick={() => setStop(false)}/>
             </div>
         </ControlLineWrapper>
     )

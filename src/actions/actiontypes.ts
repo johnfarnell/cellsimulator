@@ -2,6 +2,7 @@ import { CellValues } from "../state/cellValues"
 
 export const START = "START"
 export const STOP = "STOP"
+export const REPEAT = "REPEAT"
 export const NUMBER_OF_ROWS = "NUMBER_OF_ROWS"
 export const NUMBER_OF_COLS = "NUMBER_OF_COLS"
 export const ACTIVATE_CELL = "ACTIVATE_CELL"
@@ -12,6 +13,10 @@ export type Start = {
 }
 export type Stop = {
   type: typeof STOP
+  keep: boolean
+}
+type ActionRepeat = {
+  type: typeof REPEAT
 }
 export type NumberOfRows = {
   type: typeof NUMBER_OF_ROWS
@@ -33,6 +38,6 @@ export type UpdateCells = {
   cellValues: CellValues
 }
 
-export type Action = Start | Stop | NumberOfCols | NumberOfRows | ActivateCell | UpdateCells
+export type Action = Start | Stop | NumberOfCols | NumberOfRows | ActivateCell | UpdateCells | ActionRepeat
 
 
