@@ -50,12 +50,13 @@ It is also possible to CLEAR the grid which is an option available at all times 
 
 It is also possible to REPEAT the previous cell which simply re-runs the previous cell simulation
 
-## Technical Design
+## `Technical Design`
 
 The application was developed using react with typescript. It has test cases for all the calculations around cell generation. 
 
 I have used the `useReducer` function of react to hold the "state" of the application. There is a collection of actions which allow the components
 to interact with the applications state 
+
     export const START = "START"
     export const STOP = "STOP"
     export const REPEAT = "REPEAT"
@@ -63,6 +64,7 @@ to interact with the applications state
     export const NUMBER_OF_COLS = "NUMBER_OF_COLS"
     export const ACTIVATE_CELL = "ACTIVATE_CELL"
     export const UPDATE_CELLS = "UPDATE_CELLS"
+    
 Each of these have a corresponding reducer which manipulate the state before triggering a re-render of the application. 
 
 The cell generation is controlled within react's `useEffect` function which creates a timer set for intervals of 1 second. At each interval 
@@ -75,9 +77,10 @@ The live/dead nature of each cell is held in a simple map of values.
 export type CellValues = {
   [key: string]: boolean;
 }
-A key of 'row_col" identifies a cell, e.g. row 3, column 10 has a key of "3_10" and if it is active
+A key of 'row_col" identifies a cell, e.g. row 3, column 10 has a key of "3_10" and, if it is active,
 the cellValues will have the following appearance:
-  {"3_10: true ......}
+  
+  `{"3_10: true ......}`
   
 There are extensive tests around the algorithm to calcuale the next generation - see `src\generator\calcNextGeneration.test.ts`. Included is a test to ensure
 that the simulation at https://user-images.githubusercontent.com/7149052/53603476-bfb00e00-3c05-11e9-8862-1dfd31836dcd.jpg is successful
@@ -85,6 +88,12 @@ that the simulation at https://user-images.githubusercontent.com/7149052/5360347
 ## Testing
 
 Unit testing is 100% on the cell calculations, actions and reducers. All Actions/reducers and algorithms have 100% coverage
+
+## Future Enhancements
+
+I would like to have added the facility to mark entire rows or columns as live(or dead) via some component. I alos think it would be interesting to allow the user to predict 
+whether the simulator will run indefinitely prior to starting the generation. It would also be useful to have some standard configurations available for automatic selections 
+instead of manually (de)selecting cells.
 
 ## Available Scripts
 
