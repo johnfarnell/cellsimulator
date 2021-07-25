@@ -1,4 +1,4 @@
-import { CellValues } from "../state/cellValues";
+import { CellValues, isActive } from "../state/cellValues";
 
 export const deriveValue = (activeNeighbourCount: number, currentlyActive: boolean) : boolean => {
   if (currentlyActive) {
@@ -22,7 +22,7 @@ export const deriveKey = (row: number, col: number) : string => {
 
 export const getValue = (row: number, col: number, cellValues: CellValues): boolean => {
   const key = deriveKey(row, col)
-  return cellValues[key] ? cellValues[key] : false;
+  return isActive(key, cellValues);
 }
 
 export const initialisedRowsOfCells = (numberOfRows: number, numberOfCols: number): string[][] => {
