@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "testa": "react-scripts test src/generator/calcNextGeneration.test.ts",
+    "testa": "react-scripts test src/components/ControlLine.test.ts",
     "test": "react-scripts test",
     "coverage": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject"

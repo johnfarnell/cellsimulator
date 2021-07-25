@@ -6,7 +6,7 @@ const labelColor = (props :{ started: boolean}) : string => {
   }
   return ''
 }
-const ControlLineWrapper = styled.div<{
+export const ControlLineWrapper = styled.div<{
   started: boolean
 }>`
     display: grid;
@@ -106,16 +106,16 @@ const ControlLine = (props: ControlLineProps) => {
               </label>
             </div>
             <div className="start">
-                <input type="button" disabled={!startable} value="Start" onClick={() => setStart()}/>
+                <button  disabled={!startable} onClick={() => setStart()}>Start</button>
             </div>
             <div className="repeat">
-                <input type="button" disabled={!repeatable} value="Repeat" onClick={() => setRepeat()}/>
+                <button disabled={!repeatable} onClick={() => setRepeat()}>Repeat</button>
             </div>
             <div className="stop">
-                <input type="button" disabled={!started} value="Stop" onClick={() => setStop(true)}/>
+                <button disabled={!started}  onClick={() => setStop(true)}>Stop</button>
             </div>
             <div className="clear">
-                <input type="button" disabled={!(started||startable)} value="Clear" onClick={() => setStop(false)}/>
+                <button disabled={!(started||startable)} onClick={() => setStop(false)}>Clear</button>
             </div>
         </ControlLineWrapper>
     )

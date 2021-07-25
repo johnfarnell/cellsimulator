@@ -31,7 +31,6 @@ export const reducer = (state: State, action: Action): State => {
       return { ...state, started: false, cellValues:  {...initCellValues}, numberOfCols: action.numberOfCols }
     case ACTIVATE_CELL: {
         const cellValuesNew = { ...state.cellValues }
-        console.log({reducer: action.payload.activate})
         cellValuesNew[action.payload.key] = action.payload.activate
         return { ...state, cellValues: cellValuesNew }
       }
