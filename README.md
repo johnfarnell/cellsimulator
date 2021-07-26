@@ -52,18 +52,15 @@ In this MODE there is the possibility to `SPEED UP` (reduce the interval between
 the creation of the cells's "next generation".
          
 At any time, a simulation can be STOPPED via the `STOP` button. At this point the cell generation stops and the user can interact with the 
-grid again, and, optionally, START, REPEAT or CLEAR as they choose
-
-It is also possible to `CLEAR` the grid which is an option available at all times when there are active cells
-
-There is a further option to `REPEAT` which simply re-runs the previous cell simulation.
+grid again, and, optionally, START, REPEAT or CLEAR the grid as they choose
 
 ## `Technical Design`
 
-The application was developed using react with typescript. It has test cases for all the calculations around cell generation. 
+The application was developed using `React` with `typescript` and, in particular, the `styling-component` library. It has test 
+cases for all the calculations around cell generation. 
 
-I have used the `useReducer` function of `react` to hold the "state" of the application. There is a collection of actions which allow the components
-to interact with the applications state 
+I have used the `useReducer` function of `react` to hold the "state" of the application. There is a collection of actions which 
+allow the components to interact with the applications state 
 
     export const START = "START"
     export const STOP = "STOP"
@@ -77,13 +74,13 @@ to interact with the applications state
     
 Each of the above actions have a corresponding reducer which manipulate the state before triggering a re-render of the application. 
 
-The cell generation is controlled within react's `useEffect` function which creates a timer set for intervals of 1 second. At each interval 
-the next generation of cells is presented
+The cell generation is controlled within react's `useEffect` function which creates a timer set for intervals of 1 second. 
+At each interval the next generation of cells is presented
 
-The CellSimulation react components are developed using "styled-component". This allowed, for example, the dynamic setting of the grid rows and columns within which 
-the cells were created.
+The CellSimulation react components are developed using "styled-component". This allowed, for example, the dynamic setting of the 
+grid rows and columns within which the cells were created.
 
-The live/dead nature of each cell is held in a simple map of values.
+The active/inactive nature of each cell is held in a simple map of values.
 export type CellValues = {
   [key: string]: boolean;
 }
@@ -92,8 +89,8 @@ the cellValues will have the following appearance:
   
   `{"3_10: true ......}`
   
-The calculation of the next generation of cells (algortihm) , along with other essential pieces of functionality, is handled in a separate function from the React 
-Components.
+The calculation of the next generation of cells (algortihm) , along with other essential pieces of functionality, is handled 
+in a separate function from the React Components.
   
 There are extensive tests around the algorithm  - see `src\generator\calcNextGeneration.test.ts`. Included is a test to ensure
 that the simulation at https://user-images.githubusercontent.com/7149052/53603476-bfb00e00-3c05-11e9-8862-1dfd31836dcd.jpg is successful
@@ -104,9 +101,9 @@ Unit testing is 100% on the cell calculations, actions and reducers. All Actions
 
 ## Future Enhancements
 
-I would like to have added the facility to mark entire rows or columns as live(or dead) via some component. I also think it would be interesting to allow the user to predict 
-whether the simulator will run indefinitely prior to starting the generation. It would also be useful to have some standard configurations available for automatic selections 
-instead of manually (de)selecting cells.
+I would like to have added the facility to mark entire rows or columns as live(or dead) via some component. I also think it would be 
+interesting to allow the user to predict whether the simulator will run indefinitely prior to starting the generation. It would also be useful 
+to have somestandard configurations available for automatic selections instead of manually (de)selecting cells.
 
 ## Available Scripts
 
