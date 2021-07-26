@@ -1,28 +1,32 @@
-# Getting Started this Cell Simulator
+# Cell Simulator
 
-For a quick demonstration of the workings of this application, please copy the following link https://github.com/johnfarnell/cellsimulator/tree/dev and import at
-https://codesandbox.io/docs/importing
-Alternatively, clone the github link  https://github.com/johnfarnell/cellsimulator/tree/dev to a local machine and use the standard "npm start" to run the application locally
+For a quick demonstration of the workings of this application, please copy the following 
+link https://github.com/johnfarnell/cellsimulator/tree/dev and import at https://codesandbox.io/docs/importing
+Alternatively, clone the github link  https://github.com/johnfarnell/cellsimulator/tree/dev to a local machine 
+and use the standard "npm start" to run the application locally. Once the application has started in the terminal command prompt
+open a browser window and enter the URL http://localhost:3000
 
 ## Overview
 
 The application has the following features
 
 A Control line which allows the user to select the number of rows/columns they wish the cell simulator to operate in. There are 4 buttons which allow the simulator to 
-be "started", "stopped:, "repeated" and "cleared"
+be "started", "stopped", "repeated" and "cleared". There are 2 further buttons which allows the cell simulator to `speed up` or `slow down` - see `Started Mode ON`
 
-A Main Grid area which shows visually which cells are active
+A Main Grid area shows visually which cells are active
 
 ### The simulator operates in 2 main modes
 
 #### `Started Mode OFF`
 
 In this mode the user can interact with the grid of cells and change the number of rows and columns. Once the desired combination of cells
-is selected, the user can switch ON the simulator by pressing the start button
+is selected, the user can switch ON the simulator by pressing the `Start` button
 
 #### `Started Mode ON`
 
-In this mode the user can no longer interact with the cells or change the number of rows and columns. In this mode the simulator will refresh the cells with the latest generation of cells based on the following rules
+In this mode the user can no longer interact with the cells or change the number of rows and columns. The simulator will 
+refresh the cells with the latest generation of cells based on the following rules
+
    ##### `- When the next generation is running`
    ##### `- A Cell with fewer than two live neighbours dies of under-population.`
    ##### `- A Cell with 2 or 3 live neighbours lives on to the next generation.`
@@ -31,8 +35,8 @@ In this mode the user can no longer interact with the cells or change the number
    ##### `- A Cell who "comes to life" outside the board should wrap at the other side of the board.`
    ##### `- Once the next generation is done, User can trigger "next generation" again.`
    
-Of particular note is the  idea that a cell "comes to life" `Look out for cells appearing on the opposite side of the board from 3 or more cells that become 
-active on the board's edge
+Of particular note is the  idea that a cell `comes to life`. Look out for cells appearing on the opposite side of the board from 3 
+or more cells that become active on the board's edge
 
 A simulation can either end with
 
@@ -43,18 +47,21 @@ A simulation can either end with
    #### `The Grid running indefinitely`
          Patterns develop on the grid which go into a repeat cycle which will never see either of the scenarios above occur
          
-At any time, a simulation can be STOPPED via the stop button. At this point the cell generation stops and the user can interact with the 
-grid again and START, REPEAT or CLEAR as they choose
+In this MODE there is the possibility to `SPEED UP` (reduce the interval between) or `SLOW DOWN` (increase the interval between)
+the creation of the cells's "next generation".
+         
+At any time, a simulation can be STOPPED via the `STOP` button. At this point the cell generation stops and the user can interact with the 
+grid again, and, optionally, START, REPEAT or CLEAR as they choose
 
-It is also possible to CLEAR the grid which is an option available at all times when there are active cells
+It is also possible to `CLEAR` the grid which is an option available at all times when there are active cells
 
-It is also possible to REPEAT the previous cell which simply re-runs the previous cell simulation
+There is a further option to `REPEAT` which simply re-runs the previous cell simulation.
 
 ## `Technical Design`
 
 The application was developed using react with typescript. It has test cases for all the calculations around cell generation. 
 
-I have used the `useReducer` function of react to hold the "state" of the application. There is a collection of actions which allow the components
+I have used the `useReducer` function of `react` to hold the "state" of the application. There is a collection of actions which allow the components
 to interact with the applications state 
 
     export const START = "START"
@@ -64,8 +71,10 @@ to interact with the applications state
     export const NUMBER_OF_COLS = "NUMBER_OF_COLS"
     export const ACTIVATE_CELL = "ACTIVATE_CELL"
     export const UPDATE_CELLS = "UPDATE_CELLS"
+    export const SPEED_UP = "SPEED_UP"
+    export const SLOW_DOWN = "SLOW_DOWN"
     
-Each of these have a corresponding reducer which manipulate the state before triggering a re-render of the application. 
+Each of the above actions have a corresponding reducer which manipulate the state before triggering a re-render of the application. 
 
 The cell generation is controlled within react's `useEffect` function which creates a timer set for intervals of 1 second. At each interval 
 the next generation of cells is presented
@@ -82,7 +91,10 @@ the cellValues will have the following appearance:
   
   `{"3_10: true ......}`
   
-There are extensive tests around the algorithm to calcuale the next generation - see `src\generator\calcNextGeneration.test.ts`. Included is a test to ensure
+The calculation of the next generation of cells (algortihm) , along with other essential pieces of functionality, is handled in a separate function from the React 
+Components.
+  
+There are extensive tests around the algorithm  - see `src\generator\calcNextGeneration.test.ts`. Included is a test to ensure
 that the simulation at https://user-images.githubusercontent.com/7149052/53603476-bfb00e00-3c05-11e9-8862-1dfd31836dcd.jpg is successful
 
 ## Testing
@@ -91,7 +103,7 @@ Unit testing is 100% on the cell calculations, actions and reducers. All Actions
 
 ## Future Enhancements
 
-I would like to have added the facility to mark entire rows or columns as live(or dead) via some component. I alos think it would be interesting to allow the user to predict 
+I would like to have added the facility to mark entire rows or columns as live(or dead) via some component. I also think it would be interesting to allow the user to predict 
 whether the simulator will run indefinitely prior to starting the generation. It would also be useful to have some standard configurations available for automatic selections 
 instead of manually (de)selecting cells.
 
