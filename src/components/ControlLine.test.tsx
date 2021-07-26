@@ -1,5 +1,6 @@
 import ControlLine, { ControlLineWrapper } from "./ControlLine";
 import renderer from 'react-test-renderer'
+import 'jest-styled-components'
 
 describe('Testing the ControlLine Component', () => {
   it('should have a property of started on the outer wrapper', () => {
