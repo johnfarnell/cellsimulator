@@ -1,7 +1,7 @@
 # Cell Simulator
 
 For a quick demonstration of the workings of this application, please copy the following 
-link https://github.com/johnfarnell/cellsimulator/tree/dev and import at https://codesandbox.io/docs/importing
+link https://github.com/johnfarnell/cellsimulator and import at https://codesandbox.io/docs/importing
 Alternatively, clone the github link  https://github.com/johnfarnell/cellsimulator/tree/dev to a local machine 
 and use the standard "npm start" to run the application locally. Once the application has started in the terminal command prompt,
 open a browser window and enter the URL http://localhost:3000
@@ -114,7 +114,7 @@ Unit testing is 100% on the cell calculations, actions and reducers. All Actions
 
 I would like to have added the facility to mark entire rows or columns as live(or dead) via some component. I also think it would be 
 interesting to allow the user to predict whether the simulator will run indefinitely prior to starting the generation. It would also be useful 
-to have somestandard configurations available for automatic selections instead of manually (de)selecting cells.
+to have some standard configurations available for automatic selections instead of manually (de)selecting cells.
 
 ## Available Scripts
 
