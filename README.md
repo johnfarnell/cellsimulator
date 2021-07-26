@@ -3,7 +3,7 @@
 For a quick demonstration of the workings of this application, please copy the following 
 link https://github.com/johnfarnell/cellsimulator/tree/dev and import at https://codesandbox.io/docs/importing
 Alternatively, clone the github link  https://github.com/johnfarnell/cellsimulator/tree/dev to a local machine 
-and use the standard "npm start" to run the application locally. Once the application has started in the terminal command prompt
+and use the standard "npm start" to run the application locally. Once the application has started in the terminal command prompt,
 open a browser window and enter the URL http://localhost:3000
 
 ## Overview
@@ -11,7 +11,7 @@ open a browser window and enter the URL http://localhost:3000
 The application has the following features
 
 A Control line which allows the user to select the number of rows/columns they wish the cell simulator to operate in. There are 4 buttons which allow the simulator to 
-be "started", "stopped", "repeated" and "cleared". There are 2 further buttons which allows the cell simulator to `speed up` or `slow down` - see `Started Mode ON`
+be `started`, `stopped`, `repeated` and `cleared`. There are 2 further buttons which allows the cell simulator to `speed up` or `slow down` - see `Started Mode ON`
 
 A Main Grid area shows visually which cells are active
 
@@ -36,7 +36,8 @@ refresh the cells with the latest generation of cells based on the following rul
    ##### `- Once the next generation is done, User can trigger "next generation" again.`
    
 Of particular note is the  idea that a cell `comes to life`. Look out for cells appearing on the opposite side of the board from 3 
-or more cells that become active on the board's edge
+or more cells that become active on the board's edge. Each active cell is represented as a black dot on the page, an inactive cell
+is invisible.
 
 A simulation can either end with
 
