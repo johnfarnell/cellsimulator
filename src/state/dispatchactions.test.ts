@@ -1,7 +1,7 @@
 
 import { Dispatch } from 'react'
-import { Action, ACTIVATE_CELL, NUMBER_OF_COLS, NUMBER_OF_ROWS, REPEAT, START, STOP, UPDATE_CELLS } from '../actions/actiontypes'
-import { postNextGenerateAction, setNumberOfCols, setNumberOfRows, activateCell, setStart, setStop, setRepeat } from './dispatchactions'
+import { Action, ACTIVATE_CELL, NUMBER_OF_COLS, NUMBER_OF_ROWS, REPEAT, SLOW_DOWN, SPEED_UP, START, STOP, UPDATE_CELLS } from '../actions/actiontypes'
+import { postNextGenerateAction, setNumberOfCols, setNumberOfRows, activateCell, setStart, setStop, setRepeat, speedUp, slowDown } from './dispatchactions'
 import { State } from './reducer'
 
 describe('Tests for the postNextGenerateAction', () => { 
@@ -11,7 +11,8 @@ describe('Tests for the postNextGenerateAction', () => {
       lastRunCellValues: {},
       numberOfRows: 25,
       numberOfCols: 25,
-      started: true
+      started: true,
+      interval: 2000
     }
     const result = postNextGenerateAction(state)
     expect(result).toEqual({
@@ -26,7 +27,8 @@ describe('Tests for the postNextGenerateAction', () => {
       lastRunCellValues: {},
       numberOfRows: 25,
       numberOfCols: 25,
-      started: true
+      started: true,
+      interval: 2000
     }
     const result = postNextGenerateAction(state)
     expect(result).toEqual({
@@ -118,3 +120,27 @@ describe('Tests for the activateCell', () => {
     })
   })
 })
+
+describe('Tests for the speed up', () => { 
+  it('should dispatch the SPEED_UP action ', () => {
+    const dispatch: Dispatch<Action> = jest.fn()
+    speedUp(dispatch)()
+    expect(dispatch).toHaveBeenCalledTimes(1)
+    expect(dispatch).toHaveBeenNthCalledWith(1, {
+      type: SPEED_UP
+    })
+  })
+})
+
+
+describe('Tests for the speed up', () => { 
+  it('should dispatch the SLOW_DOWN action ', () => {
+    const dispatch: Dispatch<Action> = jest.fn()
+    slowDown(dispatch)()
+    expect(dispatch).toHaveBeenCalledTimes(1)
+    expect(dispatch).toHaveBeenNthCalledWith(1, {
+      type: SLOW_DOWN
+    })
+  })
+})
+

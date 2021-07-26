@@ -1,30 +1,42 @@
 import styled from  'styled-components'
+import Dot from './dot.png';
 
-const buttonColor = (props :{ active: boolean}) : string => {
-  if (props.active) {
-    return 'background-color: lightgreen;'
+const visible = (props : { isVisible: boolean } ) : string => {
+  if (props.isVisible) {
+    return ''
   }
-  return ''
+  return 'visibility: hidden;'
 }
 
 type CellProps = {
   active: boolean,
   activate?: (a: boolean) => void
 }
+type CellWrapperProps = {
+  active: boolean,
+  isVisible: boolean
+}
 
 export type CellType = ReturnType<typeof Cell>
 
-export const CellWrapper = styled.div<CellProps>`
+export const CellWrapper = styled.div<CellWrapperProps>`
    max-width: 15px;
    min-width: 15px;
    max-height: 15px;
    min-height: 15px;
-   button {
-     ${buttonColor}
+   ${visible}
+   input[type='checkbox'] {
       max-width: 15px;
       min-width: 15px;
       max-height: 15px;
       min-height: 15px;
+      margin: 0 0 0 0
+   }
+   img {
+      max-width: 10px;
+      min-width: 10px;
+      max-height: 6px;
+      min-height: 6px;
    }
   
   `
@@ -33,10 +45,17 @@ const  Cell = (props : CellProps) => {
     const onClickSafe = () => {
       activate && activate(!active)
     }
-    
+   // const isVisible = active || !!activate
+    if (!activate && active) {
+      return (
+      <CellWrapper active= {active} isVisible = {true}>
+        <img src={Dot} alt={"dot"}/>
+      </CellWrapper>
+      )
+    }
     return (
-      <CellWrapper {...props}>
-        <button onClick={onClickSafe}>&nbsp;</button>
+      <CellWrapper active= {active} isVisible = {!!activate}>
+        <input type="checkbox" onChange={onClickSafe} checked={active}/>
       </CellWrapper>
     )
 }

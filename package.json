@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "testa": "react-scripts test src/components/ControlLine.test.ts",
+    "testa": "react-scripts test src/components/Cell.test.ts",
     "test": "react-scripts test",
     "coverage": "react-scripts test --watchAll --coverage",
     "eject": "react-scripts eject"
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@types/react-test-renderer": "^17.0.1",
+    "jest-styled-components": "^7.0.5",
     "react-test-renderer": "^17.0.2"
   }
 }

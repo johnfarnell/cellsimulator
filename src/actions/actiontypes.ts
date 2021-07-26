@@ -7,6 +7,8 @@ export const NUMBER_OF_ROWS = "NUMBER_OF_ROWS"
 export const NUMBER_OF_COLS = "NUMBER_OF_COLS"
 export const ACTIVATE_CELL = "ACTIVATE_CELL"
 export const UPDATE_CELLS = "UPDATE_CELLS"
+export const SPEED_UP = "SPEED_UP"
+export const SLOW_DOWN = "SLOW_DOWN"
 
 export type Start = {
   type: typeof START
@@ -33,11 +35,17 @@ export type ActivateCell = {
     activate: boolean
   }
 }
+export type SpeedUp = {
+  type: typeof SPEED_UP
+}
+export type SlowDown = {
+  type: typeof SLOW_DOWN
+}
 export type UpdateCells = {
   type: typeof UPDATE_CELLS
   cellValues: CellValues
 }
 
-export type Action = Start | Stop | NumberOfCols | NumberOfRows | ActivateCell | UpdateCells | ActionRepeat
+export type Action = Start | Stop | NumberOfCols | NumberOfRows | ActivateCell | UpdateCells | ActionRepeat | SpeedUp | SlowDown
 
 
