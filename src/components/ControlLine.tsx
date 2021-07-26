@@ -14,7 +14,7 @@ export const ControlLineWrapper = styled.div<{
     justify-content: center;
     align-items: center;
     grid-template-rows:1fr, 1fr;
-    grid-template-columns:repeat(6, 1fr);
+    grid-template-columns:repeat(8, 1fr);
     .label {
       ${labelColor}
     }
@@ -28,26 +28,26 @@ export const ControlLineWrapper = styled.div<{
       background-color: lightgrey
     };
     .rows {
-      grid-column-start: 1;
-      grid-column-end: 3;
+      grid-column-start: 3;
+      grid-column-end: 4;
       grid-row-start: 1;
       grid-row-end: 1;
     }
     .cols {
-      grid-column-start: 4;
+      grid-column-start: 5;
       grid-column-end: 6;
       grid-row-start: 1;
       grid-row-end: 1;
     }
     .start {
-      grid-column-start: 1;
-      grid-column-end: 1;
+      grid-column-start: 2;
+      grid-column-end: 2;
       grid-row-start: 2;
       grid-row-end: 2;
     }
     .repeat {
-      grid-column-start: 2;
-      grid-column-end: 2;
+      grid-column-start: 3;
+      grid-column-end: 3;
       grid-row-start: 2;
       grid-row-end: 2;
     }
@@ -60,6 +60,18 @@ export const ControlLineWrapper = styled.div<{
     .clear {
       grid-column-start: 5;
       grid-column-end: 5;
+      grid-row-start: 2;
+      grid-row-end: 2;
+    }
+    .speedup {
+      grid-column-start: 6;
+      grid-column-end: 6;
+      grid-row-start: 2;
+      grid-row-end: 2;
+    }
+    .slowdown {
+      grid-column-start: 7;
+      grid-column-end: 7;
       grid-row-start: 2;
       grid-row-end: 2;
     }
@@ -76,6 +88,10 @@ type ControlLineProps = {
   setStop: (keep: boolean) => void
   numberOfRows: number
   numberOfCols: number
+  slowDown: () => void
+  speedUp: () => void
+  slowestInterval: boolean
+  quickestInterval: boolean
 }
 
 const ControlLine = (props: ControlLineProps) => {
@@ -90,7 +106,11 @@ const ControlLine = (props: ControlLineProps) => {
       repeatable,
       numberOfRows,
       numberOfCols,
-        } =  props
+      slowDown,
+      speedUp,
+      slowestInterval,
+      quickestInterval
+      } =  props
       return  (
         <ControlLineWrapper started={started}>
             <div className="rows">
@@ -116,6 +136,12 @@ const ControlLine = (props: ControlLineProps) => {
             </div>
             <div className="clear">
                 <button disabled={!(started||startable)} onClick={() => setStop(false)}>Clear</button>
+            </div>
+            <div className="speedup">
+                <button disabled={quickestInterval} onClick={() => speedUp()}>Speed-up</button>
+            </div>
+            <div className="slowdown">
+                <button disabled={slowestInterval} onClick={() => slowDown()}>Slow-down</button>
             </div>
         </ControlLineWrapper>
     )

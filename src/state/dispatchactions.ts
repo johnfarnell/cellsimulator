@@ -1,7 +1,7 @@
 import calcNextGeneration from "../generator/calcNextGeneration"
 import { isEqualToInitialValues, isEqual } from "./cellValues"
 import { State } from "./reducer";
-import { Action, ACTIVATE_CELL, NUMBER_OF_COLS, NUMBER_OF_ROWS, REPEAT, START, STOP, UPDATE_CELLS } from "../actions/actiontypes";
+import { Action, ACTIVATE_CELL, NUMBER_OF_COLS, NUMBER_OF_ROWS, REPEAT, SLOW_DOWN, SPEED_UP, START, STOP, UPDATE_CELLS } from "../actions/actiontypes";
 import { Dispatch } from "react";
 
 export const postNextGenerateAction =  (state: State ): Action => {
@@ -58,5 +58,14 @@ export const activateCell = (dispatch: Dispatch<Action>) => (key: string, active
     })
 
   }
+export const speedUp = (dispatch: Dispatch<Action>) =>
+  () => dispatch({
+    type: SPEED_UP
+  })
+export const slowDown = (dispatch: Dispatch<Action>) =>
+  () => dispatch({
+    type: SLOW_DOWN
+  })
+
 
 

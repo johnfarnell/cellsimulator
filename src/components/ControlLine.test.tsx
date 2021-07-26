@@ -3,62 +3,51 @@ import renderer from 'react-test-renderer'
 
 describe('Testing the ControlLine Component', () => {
   it('should have a property of started on the outer wrapper', () => {
-
-    const setNumberOfRows = jest.fn()
-    const setNumberOfCols = jest.fn()
-    const setStart = jest.fn()
-    const setRepeat = jest.fn()
-    const setStop = jest.fn()
-    const started = false
-    const startable = true
-    const repeatable = false
-    const numberOfRows = 20
-    const numberOfCols = 30
     const component = renderer.create(
       <ControlLine 
-          setNumberOfRows={setNumberOfRows}
-          setNumberOfCols={setNumberOfCols}
-          started={started}
-          startable={startable}
-          setStart={setStart}
-          setRepeat={setRepeat}
-          repeatable={repeatable}
-          setStop={setStop}
-          numberOfRows={numberOfRows}
-          numberOfCols={numberOfCols}
-      />
+          setNumberOfRows={jest.fn()}
+          setNumberOfCols={jest.fn()}
+          started={false}
+          startable={true}
+          setStart={jest.fn()}
+          setRepeat={jest.fn()}
+          repeatable={false}
+          setStop={jest.fn()}
+          numberOfRows={20}
+          numberOfCols={30}
+          speedUp={jest.fn()}
+          slowDown={jest.fn()}
+          slowestInterval={false}
+          quickestInterval={false}
+       />
     )   
     const instance = component.root 
     
     const controlLineWrapper = instance.findByType(ControlLineWrapper)
     expect(controlLineWrapper.props).toBeDefined()
-    expect(controlLineWrapper.props.started).toEqual(started)
+    expect(controlLineWrapper.props.started).toEqual(false)
   })
 
   it('should have a START button which triggers the setStart on an onClick event', () => {
 
-    const setNumberOfRows = jest.fn()
-    const setNumberOfCols = jest.fn()
     const setStart = jest.fn()
-    const setRepeat = jest.fn()
-    const setStop = jest.fn()
     const started = false
-    const startable = true
-    const repeatable = false
-    const numberOfRows = 20
-    const numberOfCols = 30
     const component = renderer.create(
       <ControlLine 
-          setNumberOfRows={setNumberOfRows}
-          setNumberOfCols={setNumberOfCols}
-          started={started}
-          startable={startable}
+          setNumberOfRows={jest.fn()}
+          setNumberOfCols={jest.fn()}
+          started={false}
+          startable={true}
           setStart={setStart}
-          setRepeat={setRepeat}
-          repeatable={repeatable}
-          setStop={setStop}
-          numberOfRows={numberOfRows}
-          numberOfCols={numberOfCols}
+          setRepeat={jest.fn()}
+          repeatable={false}
+          setStop={jest.fn()}
+          numberOfRows={20}
+          numberOfCols={30}
+          speedUp={jest.fn()}
+          slowDown={jest.fn()}
+          slowestInterval={false}
+          quickestInterval={false}
       />
     )   
     const instance = component.root 
@@ -69,7 +58,7 @@ describe('Testing the ControlLine Component', () => {
     expect(controlLineWrapper.props).toBeDefined()
     expect(controlLineWrapper.props.started).toEqual(started)
     expect(buttons).toBeDefined()
-    expect(buttons).toHaveLength(4)
+    expect(buttons).toHaveLength(6)
     expect(buttons[0].props.children).toEqual('Start')
     expect(buttons[0].props.disabled).toEqual(false)
 
@@ -79,27 +68,22 @@ describe('Testing the ControlLine Component', () => {
 
   it('should have a NumberOfRows input text which triggers the setNumberOfRows on an onChange event', () => {
     const setNumberOfRows = jest.fn()
-    const setNumberOfCols = jest.fn()
-    const setStart = jest.fn()
-    const setRepeat = jest.fn()
-    const setStop = jest.fn()
-    const started = false
-    const startable = true
-    const repeatable = false
-    const numberOfRows = 20
-    const numberOfCols = 30
     const component = renderer.create(
       <ControlLine 
-          setNumberOfRows={setNumberOfRows}
-          setNumberOfCols={setNumberOfCols}
-          started={started}
-          startable={startable}
-          setStart={setStart}
-          setRepeat={setRepeat}
-          repeatable={repeatable}
-          setStop={setStop}
-          numberOfRows={numberOfRows}
-          numberOfCols={numberOfCols}
+        setNumberOfRows={setNumberOfRows}
+        setNumberOfCols={jest.fn()}
+        started={false}
+        startable={true}
+        setStart={jest.fn()}
+        setRepeat={jest.fn()}
+        repeatable={false}
+        setStop={jest.fn()}
+        numberOfRows={20}
+        numberOfCols={30}
+        speedUp={jest.fn()}
+        slowDown={jest.fn()}
+        slowestInterval={false}
+        quickestInterval={false}
       />
     )   
     const instance = component.root 

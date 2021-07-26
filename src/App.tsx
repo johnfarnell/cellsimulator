@@ -8,22 +8,26 @@ import { GridHeading } from './components/GridHeading';
 import { GridMain } from './components/GridMain';
 import { initialisedRowsOfCells } from './generator/utility';
 import { isActive, isEqualToInitialValues } from './state/cellValues';
-import { postNextGenerateAction, setNumberOfCols, setNumberOfRows, setStart, setRepeat, setStop, activateCell } from './state/dispatchactions';
-import { initialReducerState, reducer } from './state/reducer';
+import { postNextGenerateAction, setNumberOfCols, setNumberOfRows, setStart, setRepeat, setStop, activateCell, speedUp, slowDown } from './state/dispatchactions';
+import { initialReducerState, isQuickestInterval, isSlowestInterval, reducer } from './state/reducer';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialReducerState)
-  const { numberOfCols, numberOfRows, cellValues, started, lastRunCellValues } = state
+  const { numberOfCols, numberOfRows, cellValues, started, lastRunCellValues, interval } = state
   const rows = initialisedRowsOfCells(numberOfRows, numberOfCols);
   useEffect(() => {
     if (!started) return
-    let actionTimer = setTimeout(() => { dispatch(postNextGenerateAction(state)) }, 1000)
+    let actionTimer = setTimeout(() => { dispatch(postNextGenerateAction(state)) }, interval)
     return () => {
       clearTimeout(actionTimer)
     }
   })
   const startable = !(started || isEqualToInitialValues(cellValues))
   const repeatable = !(started || isEqualToInitialValues(lastRunCellValues))
+
+  const slowestInterval = !started || isSlowestInterval(interval)
+  const quickestInterval = !started ||  isQuickestInterval(interval)
+
 
   return (
     <GridMain>
@@ -45,6 +49,10 @@ const App = () => {
             repeatable={repeatable}
             numberOfRows={numberOfRows}
             numberOfCols={numberOfCols}
+            speedUp={speedUp(dispatch)}
+            slowDown={slowDown(dispatch)}
+            slowestInterval = {slowestInterval}
+            quickestInterval = {quickestInterval}
           />
         </GridFlex>
       </GridContainer>
