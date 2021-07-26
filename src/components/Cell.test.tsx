@@ -48,7 +48,7 @@ describe('Testing the Cell Component', () => {
 
       expect(activate).toHaveBeenCalledTimes(0)
       props.onChange()
-      expect(activate).toHaveBeenCalledWith(false)
+      expect(activate).toHaveBeenCalledWith()
     })
 
 
@@ -68,6 +68,6 @@ describe('Testing the Cell Component', () => {
 
       expect(activate).toHaveBeenCalledTimes(0)
       props.onChange()
-      expect(activate).toHaveBeenCalledWith(true)
+      expect(activate).toHaveBeenCalledWith()
     })
 })
