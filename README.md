@@ -10,8 +10,9 @@ open a browser window and enter the URL http://localhost:3000
 
 The application has the following features
 
-A Control line which allows the user to select the number of rows/columns they wish the cell simulator to operate in. There are 4 buttons which allow the simulator to 
-be `started`, `stopped`, `repeated` and `cleared`. There are 2 further buttons which allows the cell simulator to `speed up` or `slow down` - see `Started Mode ON`
+A Control line which allows the user to select the number of rows/columns they wish the cell simulator to operate in. 
+There are 4 buttons which allow the simulator to be `started`, `stopped`, `repeated` and `cleared`. There are 2 further 
+buttons which allows the cell simulator to `speed up` or `slow down` - see `Started Mode ON`
 
 A Main Grid area shows visually which cells are active
 
@@ -19,8 +20,13 @@ A Main Grid area shows visually which cells are active
 
 #### `Started Mode OFF`
 
-In this mode the user can interact with the grid of cells and change the number of rows and columns. Once the desired combination of cells
+In this mode the user can interact with the grid of cells `and change the number of rows and columns`. Once the desired combination of cells
 is selected, the user can switch ON the simulator by pressing the `Start` button
+
+<img width="737" alt="ModeOFF" src="https://user-images.githubusercontent.com/25125205/127062707-480f623a-17fb-4955-a1bd-8d37f9451947.png">
+
+<img width="694" alt="ModeOFFSelected" src="https://user-images.githubusercontent.com/25125205/127063109-650e8c71-5f78-4c43-b770-abccf6085f13.png">
+
 
 #### `Started Mode ON`
 
@@ -38,6 +44,8 @@ refresh the cells with the latest generation of cells based on the following rul
 Of particular note is the  idea that a cell `comes to life`. Look out for cells appearing on the opposite side of the board from 3 
 or more cells that become active on the board's edge. Each active cell is represented as a black dot on the page, an inactive cell
 is invisible.
+
+<img width="611" alt="ModeON" src="https://user-images.githubusercontent.com/25125205/127063435-6e0f3589-8e19-4359-a517-431a01b3ce1d.png">
 
 A simulation can either end with
 
@@ -74,11 +82,13 @@ allow the components to interact with the applications state
     
 Each of the above actions have a corresponding reducer which manipulate the state before triggering a re-render of the application. 
 
-The cell generation is controlled within react's `useEffect` function which creates a timer set for intervals of 1 second. 
-At each interval the next generation of cells is presented
+The cell generation is controlled within react's `useEffect` function which creates a timer set to run the algorithm
+at configurable intervals as determined by the `Speed Up` and `Slow Down` features. 
 
-The CellSimulation react components are developed using "styled-component". This allowed, for example, the dynamic setting of the 
-grid rows and columns within which the cells were created.
+At each interval the next generation of cells is presented a page of "active" black dots
+
+The Cell Simulation's react components are developed using `styled-component`. This allowed for the dynamic setting of the grid rows 
+and columns within which the cells were created.
 
 The active/inactive nature of each cell is held in a simple map of values.
 export type CellValues = {
