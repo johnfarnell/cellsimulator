@@ -10,7 +10,7 @@ const visible = (props : { isVisible: boolean } ) : string => {
 
 type CellProps = {
   active: boolean,
-  activate?: (a: boolean) => void
+  activate?: () => void
 }
 type CellWrapperProps = {
   active: boolean,
@@ -43,7 +43,7 @@ export const CellWrapper = styled.div<CellWrapperProps>`
 const  Cell = (props : CellProps) => {
     const {activate, active } = props
     const onClickSafe = () => {
-      activate && activate(!active)
+      activate && activate()
     }
    // const isVisible = active || !!activate
     if (!activate && active) {
@@ -60,7 +60,7 @@ const  Cell = (props : CellProps) => {
     )
 }
 
-export const getCell = (key: string, started: boolean, active: boolean, activate: ((a: boolean) => void)): CellType => {
+export const getCell = (key: string, started: boolean, active: boolean, activate: (() => void)): CellType => {
 
   if (started) {
     return <Cell active={active} key={key} />

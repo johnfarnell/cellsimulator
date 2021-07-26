@@ -14,10 +14,16 @@ import { initialReducerState, isQuickestInterval, isSlowestInterval, reducer } f
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialReducerState)
   const { numberOfCols, numberOfRows, cellValues, started, lastRunCellValues, interval } = state
+
+  //Get a 2 dimensional array of all the keys in the grid .. e.g "4_5" is row 5, column 6 (zero-array)
   const rows = initialisedRowsOfCells(numberOfRows, numberOfCols);
   useEffect(() => {
     if (!started) return
-    let actionTimer = setTimeout(() => { dispatch(postNextGenerateAction(state)) }, interval)
+    /*
+    * This is the main section of the logic, where periodically, as controlled by the "interval"
+    * setting, the next generation of the "active" cells are generated
+    */
+      let actionTimer = setTimeout(() => { dispatch(postNextGenerateAction(state)) }, interval)
     return () => {
       clearTimeout(actionTimer)
     }
@@ -27,7 +33,6 @@ const App = () => {
 
   const slowestInterval = !started || isSlowestInterval(interval)
   const quickestInterval = !started ||  isQuickestInterval(interval)
-
 
   return (
     <GridMain>
