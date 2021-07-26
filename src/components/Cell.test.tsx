@@ -1,55 +1,73 @@
 import Cell, { CellWrapper } from "./Cell";
 import renderer from 'react-test-renderer'
-
+import 'jest-styled-components'
 
 describe('Testing the Cell Component', () => {
-    it('should have an active, lightgreen button when active is TRUE', () => {
+    it('should have a visible active "dot" image when active and no activate function is available', () => {
       const component = renderer.create(
         <Cell active={true}/>
       )   
+
+      const json = component.toJSON()
+      expect(json).toHaveStyleRule( 'max-width', '15px')
+      expect(json).toBeVisible
       const instance = component.root 
       
-      const cellWrapper = instance.findByType(CellWrapper)
-      expect(cellWrapper.props).toBeDefined()
-      expect(cellWrapper.props.active).toEqual(true)
+      const img = instance.findByType('img')
+      expect(img).toBeDefined()
+      expect(img.props.src).toEqual('dot.png')
+      expect(img.props.alt).toEqual('dot')
     })
 
-    // it('should have NOT an active prop, normal button when active is FALSE', () => {
-    //    const component = renderer.create(
-    //     <Cell active={false} />
-    //   )   
-    //   const instance = component.root 
+    it('should not be visible when NOT active and no activate function is available', () => {
+      const component = renderer.create(
+        <Cell active={false}/>
+      )   
+      const json = component.toJSON()
+      expect(json).toHaveStyleRule( 'max-width', '15px')
+     
+      const instance = component.root 
+ 
+      const img = instance.findAllByType('img')
+      expect(img).toHaveLength(0)
+    })
+
+    it('should be visible when active and activate function is available', () => {
+      const activate = jest.fn()
+      const component = renderer.create(
+        <Cell active={true} activate={activate}/>
+      )   
+      const json = component.toJSON()
+      expect(json).toHaveStyleRule( 'max-width', '15px')
+
+      const instance = component.root 
+            
+      const props = instance.findByType('input').props
+      expect(props.type).toEqual('checkbox')
+      expect(props.checked).toEqual(true)
+
+      expect(activate).toHaveBeenCalledTimes(0)
+      props.onChange()
+      expect(activate).toHaveBeenCalledWith(false)
+    })
+
+
+    it('should be visible when NOT active and activate function is available', () => {
+      const activate = jest.fn()
+      const component = renderer.create(
+        <Cell active={false} activate={activate}/>
+      )   
+      const json = component.toJSON()
+      expect(json).toHaveStyleRule( 'max-width', '15px')
+     
+      const instance = component.root 
       
-    //   const cellWrapper = instance.findByType(CellWrapper)
-    //   expect(cellWrapper.props).toBeDefined()
-    //   expect(cellWrapper.props.active).toEqual(false)
-    // })
+      const props = instance.findByType('input').props
+      expect(props.type).toEqual('checkbox')
+      expect(props.checked).toEqual(false)
 
-    // it('should call with activate == true when NOT active and button is clicked' , () => {
-    //   const mockActivate = jest.fn((activate: boolean)=> activate);
-    //   const component = renderer.create(
-    //     <Cell active={false} activate={mockActivate}/>
-    //   )   
-    //   const instance = component.root 
-      
-    //   const cellWrapper = instance.findByType(CellWrapper)
-    //   const button = cellWrapper.findByType('button')
-    //   button.props.onClick()
-    //   expect(mockActivate).toHaveBeenCalledWith(true)
-
-    // })
-
-    // it('should call with activate == false when active and button is clicked' , () => {
-    //   const mockActivate = jest.fn((activate: boolean)=> activate);
-    //   const component = renderer.create(
-    //     <Cell active={true} activate={mockActivate}/>
-    //   )   
-    //   const instance = component.root 
-      
-    //   const cellWrapper = instance.findByType(CellWrapper)
-    //   const button = cellWrapper.findByType('button')
-    //   button.props.onClick()
-    //   expect(mockActivate).toHaveBeenCalledWith(false)
-    // })
-
+      expect(activate).toHaveBeenCalledTimes(0)
+      props.onChange()
+      expect(activate).toHaveBeenCalledWith(true)
+    })
 })

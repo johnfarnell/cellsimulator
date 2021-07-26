@@ -169,6 +169,14 @@ describe ('Tests for the reducer', ()=> {
       expect(reducer(activeState, action)).toEqual({...activeState, interval: intervals[3]} )
     })
       
+    it('should not change the Timeout Interval when at MAX speed for Action: SPEED_UP', () => {
+      const activeState = { ...state, interval: intervals[intervals.length -1] }
+      const action: Action = {
+        type: SPEED_UP,
+       }
+      expect(reducer(activeState, action)).toEqual({...activeState} )
+    })
+      
     it('should increase the Timeout Interval for Action: SLOW_DOWN', () => {
       const activeState = { ...state, interval: intervals[2]  }
       const action: Action = {
@@ -176,5 +184,12 @@ describe ('Tests for the reducer', ()=> {
        }
       expect(reducer(activeState, action)).toEqual({...activeState, interval: intervals[1] } )
     })
-
+      
+    it('should not change the Timeout Interval when at MIN speed for Action: SLOW_DOWN', () => {
+      const activeState = { ...state, interval: intervals[0]  }
+      const action: Action = {
+        type: SLOW_DOWN,
+       }
+      expect(reducer(activeState, action)).toEqual({...activeState} )
+    })
 })
