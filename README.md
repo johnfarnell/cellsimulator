@@ -45,8 +45,7 @@ Of particular note is the  idea that a cell `comes to life`. Look out for cells 
 or more cells that become active on the board's edge. Each active cell is represented as a black dot on the page, an inactive cell
 is invisible.
 
-<img width="631" alt="ModeON" src="https://user-images.githubusercontent.com/25125205/127063928-68dbd4c1-75ea-4061-9df8-0240119e05e9.png">
-
+<img width="583" alt="ModeON" src="https://user-images.githubusercontent.com/25125205/127064724-b82dd5c5-46a8-4cac-a143-765efd1fffb2.png">
 
 A simulation can either end with
 
