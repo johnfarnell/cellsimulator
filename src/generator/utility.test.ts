@@ -1,4 +1,4 @@
-import { deriveValue, deriveKey, getValue, initialisedRowsOfCells, getTargetKey } from './utility'
+import { deriveValue, deriveKey, getValue, initialisedRowsOfCells, getTargetKey,  } from './utility'
 describe('Tests for the deriveValue in the utility', () => {
   it('should return TRUE when active and 2 neighbours', () => {
     const activeNeighbourCount = 2
@@ -70,14 +70,9 @@ describe('Tests for the initialisedRowsOfCells in the utility', () => {
 
   it('should return an array matching the number of rows and cols', () => {
     const rowsAndCols = initialisedRowsOfCells(4, 6)
-    expect(rowsAndCols).toHaveLength(4)
-    expect(rowsAndCols[0]).toHaveLength(6)
-    expect(rowsAndCols[1]).toHaveLength(6)
-    expect(rowsAndCols[2]).toHaveLength(6)
-    expect(rowsAndCols[3]).toHaveLength(6)
-
+    expect(rowsAndCols).toHaveLength(24)
     //pick a random cell to check
-    expect(rowsAndCols[2][4]).toEqual("2_4")
+    expect(rowsAndCols[16]).toEqual("2_4")
   })
 })
 

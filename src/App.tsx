@@ -16,7 +16,7 @@ const App = () => {
   const { numberOfCols, numberOfRows, cellValues, started, lastRunCellValues, interval } = state
 
   //Get a 2 dimensional array of all the keys in the grid .. e.g "4_5" is row 5, column 6 (zero-array)
-  const rows = initialisedRowsOfCells(numberOfRows, numberOfCols);
+  const cells = initialisedRowsOfCells(numberOfRows, numberOfCols);
   useEffect(() => {
     if (!started) return
     /*
@@ -65,12 +65,10 @@ const App = () => {
         <GridFlex justifyContents="center">
           <Grid rows={numberOfRows} cols={numberOfCols}>
             {
-              rows.map(cols => {
-                return cols.map(key => {
-                  const active = isActive(key, cellValues)
-                  return getCell(key, started, active, activateCell(dispatch)(key, active))
+              cells.map(cell => {
+                  const active = isActive(cell, cellValues)
+                  return getCell(cell, started, active, activateCell(dispatch)(cell, active))
                 })
-              })
             }
           </Grid>
         </GridFlex>
